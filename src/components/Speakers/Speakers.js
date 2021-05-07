@@ -4,7 +4,7 @@ import SpeakerSearchBar from "../SpeakerSearchBar/SpeakerSearchBar";
 import Speaker from "../Speaker/Speaker";
 
 const Speakers = () => {
-  const speakers = [
+  const speakersArray = [
     {
       imageSrc: "speaker-component-1124",
       name: "Douglas Crockford",
@@ -44,6 +44,26 @@ const Speakers = () => {
   ];
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [speakers, setSpeakers] = useState(speakersArray);
+
+  function toggleSpeakerFavorite(speakerRec) {
+    return {
+      ...speakerRec,
+      isFavorite: !speakerRec.isFavorite,
+    };
+  }
+
+  function onFavoriteToggleHandler(speakerRec) {
+    const toggledSpeakerRec = toggleSpeakerFavorite(speakerRec);
+    const speakerIndex = speakers
+      .map((speaker) => speaker.id)
+      .indexOf(speakerRec.id);
+    setSpeakers([
+      ...speakers.slice(0, speakerIndex),
+      toggledSpeakerRec,
+      ...speakers.slice(speakerIndex + 1),
+    ]);
+  }
 
   return (
     <div>
@@ -60,7 +80,11 @@ const Speakers = () => {
               : targetString.includes(searchQuery.toLowerCase());
           })
           .map((speaker) => (
-            <Speaker key={speaker.id} {...speaker} />
+            <Speaker
+              key={speaker.id}
+              {...speaker}
+              onFavoriteToggle={() => onFavoriteToggleHandler(speaker)}
+            />
           ))}
       </div>
     </div>

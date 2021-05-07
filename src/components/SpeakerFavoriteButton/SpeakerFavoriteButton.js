@@ -1,8 +1,11 @@
 import React from "react";
 
-const SpeakerFavoriteButton = ({ isFavorite }) => {
+const SpeakerFavoriteButton = ({ isFavorite, onFavoriteToggle }) => {
   return (
-    <div className={isFavorite ? "heartredbutton" : "heartdarkbutton"}></div>
+    <div
+      onClick={onFavoriteToggle}
+      className={isFavorite ? "heartredbutton" : "heartdarkbutton"}
+    ></div>
   );
 };
 
