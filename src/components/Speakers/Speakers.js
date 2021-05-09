@@ -5,7 +5,7 @@ import Speaker from "../Speaker/Speaker";
 import { REQUEST_STATUS } from "../../reducers/request";
 import withRequest from "../HOCs/withRequest";
 
-const Speakers = ({ records: speakers, status, error, put }) => {
+const Speakers = ({ records: speakers, status, error, put, bgcolor }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   async function onFavoriteToggleHandler(speakerRec) {
@@ -35,7 +35,9 @@ const Speakers = ({ records: speakers, status, error, put }) => {
         </div>
       )}
       {success && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-12">
+        <div
+          className={`grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-12 ${bgcolor}`}
+        >
           {speakers
             .filter((rec) => {
               const targetString = `${rec.firstName} ${rec.lastName}`.toLowerCase();

@@ -8,7 +8,8 @@ import {
   PUT_FAILURE,
 } from "../../actions/request";
 
-const withRequest = (baseUrl, routeName) => (Component) => () => {
+const withRequest = (baseUrl, routeName) => (Component) => (props) => {
+  console.log(props);
   const [{ records, status, error }, dispatch] = useReducer(requestReducer, {
     records: [],
     status: REQUEST_STATUS.LOADING,
@@ -51,9 +52,9 @@ const withRequest = (baseUrl, routeName) => (Component) => () => {
     }
   };
 
-  const props = { records, status, error, put };
+  const rest = { records, status, error, put };
 
-  return <Component {...props}></Component>;
+  return <Component {...props} {...rest}></Component>;
 };
 
 export default withRequest;
