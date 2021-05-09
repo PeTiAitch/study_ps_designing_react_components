@@ -1,4 +1,4 @@
-const withData = (maxSpeakersToShow) => (Component) => () => {
+const withData = (maxSpeakersToShow) => (Component) => (props) => {
   const speakers = [
     {
       imageSrc: "speaker-component-1124",
@@ -15,7 +15,7 @@ const withData = (maxSpeakersToShow) => (Component) => () => {
   ];
 
   const limitSpeakers = speakers.slice(0, maxSpeakersToShow);
-  return <Component speakers={limitSpeakers}></Component>;
+  return <Component {...props} speakers={limitSpeakers}></Component>;
 };
 
 export default withData;
