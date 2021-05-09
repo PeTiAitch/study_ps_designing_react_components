@@ -9,7 +9,6 @@ import {
 } from "../../actions/request";
 
 const withRequest = (baseUrl, routeName) => (Component) => (props) => {
-  console.log(props);
   const [{ records, status, error }, dispatch] = useReducer(requestReducer, {
     records: [],
     status: REQUEST_STATUS.LOADING,
