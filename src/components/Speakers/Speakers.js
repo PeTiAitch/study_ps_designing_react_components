@@ -4,6 +4,7 @@ import axios from "axios";
 import SpeakerSearchBar from "../SpeakerSearchBar/SpeakerSearchBar";
 import Speaker from "../Speaker/Speaker";
 import requestReducer, { REQUEST_STATUS } from "../../reducers/request";
+import withRequest from "../HOCs/withRequest";
 import {
   GET_ALL_SUCCESS,
   UPDATE_STATUS,
@@ -111,4 +112,4 @@ const Speakers = () => {
     </div>
   );
 };
-export default Speakers;
+export default withRequest()(Speakers);
