@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import SpeakerSearchBar from "../SpeakerSearchBar/SpeakerSearchBar";
 import Speaker from "../Speaker/Speaker";
 import { REQUEST_STATUS } from "../../reducers/request";
 import Request from "../RPs/Request";
 import SpecialMessage from "../RPs/SpecialMessage";
+import { SpeakersContext } from "../../contexts/SpeakerContext";
 
 const Speakers = ({ bgColor }) => {
   const [searchQuery, setSearchQuery] = useState("");
+
+  const speakersInContext = useContext(SpeakersContext);
+  console.log(speakersInContext);
 
   return (
     <div className={bgColor}>
