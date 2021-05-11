@@ -1,9 +1,9 @@
-import React, { createContext, useState, useEffect } from "react";
-import useRequestSimple from "../hooks/useRequestSimple";
+import React, { createContext } from "react";
+import useRequest from "../hooks/useRequest";
 const DataContext = createContext();
 
-const DataProvider = ({ children }) => {
-  const state = useRequestSimple();
+const DataProvider = ({ children, baseUrl, routeName }) => {
+  const state = useRequest(baseUrl, routeName);
   return <DataContext.Provider value={state}>{children}</DataContext.Provider>;
 };
 
