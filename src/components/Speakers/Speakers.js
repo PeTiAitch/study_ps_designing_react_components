@@ -6,7 +6,7 @@ import { REQUEST_STATUS } from "../../reducers/request";
 
 import { DataContext, DataProvider } from "../../contexts/DataContext";
 
-const SpeakersComponent = ({ bgColor }) => {
+const SpeakersComponent = () => {
   const specialMessage = "";
   const { records: speakers, status, error, put } = useContext(DataContext);
 
@@ -24,7 +24,7 @@ const SpeakersComponent = ({ bgColor }) => {
   const hasErrored = status === REQUEST_STATUS.ERROR;
 
   return (
-    <div className={bgColor}>
+    <div>
       <SpeakerSearchBar
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}

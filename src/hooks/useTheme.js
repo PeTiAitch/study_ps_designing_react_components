@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { THEMELIST } from "../contexts/ThemeContext";
 
 const useTheme = (startingTheme) => {
   const [theme, setTheme] = useState(startingTheme);
