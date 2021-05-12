@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import axios from "axios";
 import requestReducer, { REQUEST_STATUS } from "../reducers/request";
 import {
@@ -35,7 +35,7 @@ const useRequest = (baseUrl, routeName) => {
     fetchData();
   }, []);
 
-  const put = async (record) => {
+  const put = React.useCallback(async (record) => {
     try {
       await axios.put(`${baseUrl}/${routeName}/${record.id}`, record);
       dispatch({
@@ -49,7 +49,7 @@ const useRequest = (baseUrl, routeName) => {
         error: e,
       });
     }
-  };
+  }, []);
 
   const propsLocal = { records, status, error, put };
 

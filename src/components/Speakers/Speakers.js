@@ -12,12 +12,12 @@ const SpeakersComponent = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
 
-  async function onFavoriteToggleHandler(speakerRec) {
-    put({
-      ...speakerRec,
-      isFavorite: !speakerRec.isFavorite,
-    });
-  }
+  //   async function onFavoriteToggleHandler(speakerRec) {
+  //     put({
+  //       ...speakerRec,
+  //       isFavorite: !speakerRec.isFavorite,
+  //     });
+  //   }
 
   const success = status === REQUEST_STATUS.SUCCESS;
   const isLoading = status === REQUEST_STATUS.LOADING;
@@ -53,17 +53,14 @@ const SpeakersComponent = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-12">
           {speakers
             .filter((rec) => {
-              const targetString = `${rec.firstName} ${rec.lastName}`.toLowerCase();
+              const targetString =
+                `${rec.firstName} ${rec.lastName}`.toLowerCase();
               return searchQuery.length === 0
                 ? true
                 : targetString.includes(searchQuery.toLowerCase());
             })
             .map((speaker) => (
-              <Speaker
-                key={speaker.id}
-                {...speaker}
-                onFavoriteToggle={() => onFavoriteToggleHandler(speaker)}
-              />
+              <Speaker key={speaker.id} {...speaker} put={put} />
             ))}
         </div>
       )}
