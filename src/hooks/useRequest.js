@@ -9,6 +9,8 @@ import {
 } from "../actions/request";
 
 const useRequest = (baseUrl, routeName) => {
+  const signal = React.useRef(axios.CancelToken.source());
+
   const [{ records, status, error }, dispatch] = useReducer(requestReducer, {
     records: [],
     status: REQUEST_STATUS.LOADING,
@@ -18,22 +20,33 @@ const useRequest = (baseUrl, routeName) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/${routeName}`);
+        const response = await axios.get(`${baseUrl}/${routeName}`, {
+          cancelToken: signal.current.token,
+        });
         dispatch({
           type: GET_ALL_SUCCESS,
           records: response.data,
           status: REQUEST_STATUS.SUCCESS,
         });
       } catch (e) {
-        dispatch({
-          type: GET_ALL_FAILURE,
-          status: REQUEST_STATUS.ERROR,
-          error: e,
-        });
+        console.log("Loading data error", e);
+        if (axios.isCancel(e)) {
+          console.log("Get request canceled");
+        } else {
+          dispatch({
+            type: GET_ALL_FAILURE,
+            error: e,
+          });
+        }
       }
     };
     fetchData();
-  }, []);
+
+    return () => {
+      console.log("unmount and cancel running axios request");
+      signal.current.cancel();
+    };
+  }, [baseUrl, routeName]);
 
   const put = React.useCallback(async (record) => {
     try {
