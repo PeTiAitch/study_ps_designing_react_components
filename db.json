@@ -11,10 +11,8 @@
       "id": 5996,
       "firstName": "Craig",
       "lastName": "Berntson",
-      "isFavorite": true,
       "bio": "Craig has a passion for community and helping other developers improve their skills. He writes the column \"Software Gardening\" in DotNet Curry Magazine and is the co-author of \"Continuous Integration in .NET\" available from Manning.",
-      "sat": true,
-      "sun": true
+      "isFavorite": false
     },
     {
       "id": 10803,
@@ -38,10 +36,8 @@
       "id": 41808,
       "firstName": "Paul",
       "lastName": "Everitt",
-      "sat": true,
-      "sun": true,
-      "isFavorite": true,
-      "bio": "Paul is the PyCharm and WebStorm Developer Advocate at JetBrains. Before that, Paul was a partner at Agendaless Consulting and co-founder of Zope Corporation, taking the first open source application server through $14M of funding."
+      "bio": "Paul is the PyCharm and WebStorm Developer Advocate at JetBrains. Before that, Paul was a partner at Agendaless Consulting and co-founder of Zope Corporation, taking the first open source application server through $14M of funding.",
+      "isFavorite": false
     },
     {
       "id": 1269,

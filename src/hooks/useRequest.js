@@ -6,6 +6,7 @@ import {
   GET_ALL_FAILURE,
   PUT_SUCCESS,
   PUT_FAILURE,
+  PUT,
 } from "../actions/request";
 
 const useRequest = (baseUrl, routeName) => {
@@ -49,6 +50,10 @@ const useRequest = (baseUrl, routeName) => {
   }, [baseUrl, routeName]);
 
   const put = React.useCallback(async (record) => {
+    dispatch({
+      type: PUT,
+      record,
+    });
     try {
       await axios.put(`${baseUrl}/${routeName}/${record.id}`, record);
       dispatch({
